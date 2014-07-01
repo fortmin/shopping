@@ -5,7 +5,7 @@
   <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
   <init-param>
    <param-name>services</param-name>
-   <param-value>com.fortmin.proshopping.DeviceInfoEndpoint,com.fortmin.proshopping.MessageEndpoint</param-value>
+   <param-value>com.fortmin.proshopping.ComercioEndpoint,com.fortmin.proshopping.DeviceInfoEndpoint,com.fortmin.proshopping.MessageEndpoint,com.fortmin.proshopping.PaqueteEndpoint,com.fortmin.proshopping.Shopping,com.fortmin.proshopping.UbicacionEndpoint</param-value>
   </init-param>
  </servlet>
  <servlet-mapping>

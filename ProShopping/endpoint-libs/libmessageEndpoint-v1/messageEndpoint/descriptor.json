@@ -1,13 +1,13 @@
 {
   "files": [
     {
-      "downloadUrl": "/downloads/messageEndpoint/v1/20140619225835/java/1.16.0-rc/fortmin.com-messageEndpoint-v1-20140619225835-java-1.16.0-rc-sources.jar", 
-      "path": "fortmin.com-messageEndpoint-v1-20140619225835-java-1.16.0-rc-sources.jar", 
+      "downloadUrl": "/downloads/messageEndpoint/v1/20140701024557/java/1.16.0-rc/fortmin.com-messageEndpoint-v1-20140701024557-java-1.16.0-rc-sources.jar", 
+      "path": "fortmin.com-messageEndpoint-v1-20140701024557-java-1.16.0-rc-sources.jar", 
       "type": "source", 
-      "timestamp": "2014-06-19 22:58"
+      "timestamp": "2014-07-01 02:45"
     }, 
     {
-      "path": "fortmin.com-messageEndpoint-v1-20140619225835-java-1.16.0-rc.jar.properties", 
+      "path": "fortmin.com-messageEndpoint-v1-20140701024557-java-1.16.0-rc.jar.properties", 
       "type": "android.properties"
     }
   ], 
@@ -702,5 +702,5 @@
   "packagePath": "proshopping", 
   "language_version": "1.16.0-rc", 
   "id": "messageEndpoint:v1", 
-  "revision": 20140619225835
+  "revision": 20140701024557
 }

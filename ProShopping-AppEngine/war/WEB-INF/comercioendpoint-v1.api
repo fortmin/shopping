@@ -1,0 +1,191 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://myapp.appspot.com/_ah/api",
+  "name" : "comercioendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://myapp.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "fortmin.com",
+  "ownerName" : "fortmin.com",
+  "packagePath" : "proshopping",
+  "methods" : {
+    "comercioendpoint.updateComercio" : {
+      "path" : "comercio",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.ComercioEndpoint.updateComercio",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "comercioendpoint.insertComercio" : {
+      "path" : "comercio",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.ComercioEndpoint.insertComercio",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "comercioendpoint.listComercio" : {
+      "path" : "comercio",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.ComercioEndpoint.listComercio",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "comercioendpoint.removeComercio" : {
+      "path" : "comercio/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.ComercioEndpoint.removeComercio",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "comercioendpoint.getComercio" : {
+      "path" : "comercio/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.ComercioEndpoint.getComercio",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Comercio" : {
+        "id" : "Comercio",
+        "type" : "object",
+        "properties" : {
+          "nombre" : {
+            "type" : "string"
+          },
+          "ubicacion" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CollectionResponse_Comercio" : {
+        "id" : "CollectionResponse_Comercio",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Comercio"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.fortmin.proshopping.ComercioEndpoint.updateComercio" : {
+        "request" : {
+          "$ref" : "Comercio"
+        },
+        "response" : {
+          "$ref" : "Comercio"
+        }
+      },
+      "com.fortmin.proshopping.ComercioEndpoint.insertComercio" : {
+        "request" : {
+          "$ref" : "Comercio"
+        },
+        "response" : {
+          "$ref" : "Comercio"
+        }
+      },
+      "com.fortmin.proshopping.ComercioEndpoint.listComercio" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Comercio"
+        }
+      },
+      "com.fortmin.proshopping.ComercioEndpoint.removeComercio" : {
+      },
+      "com.fortmin.proshopping.ComercioEndpoint.getComercio" : {
+        "response" : {
+          "$ref" : "Comercio"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,303 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://myapp.appspot.com/_ah/api",
+  "name" : "shopping",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://myapp.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "fortmin.com",
+  "ownerName" : "fortmin.com",
+  "packagePath" : "proshopping",
+  "methods" : {
+    "shopping.insertubicacion" : {
+      "path" : "ubicacion",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.insertUbicacion",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "shopping.updatecomercio" : {
+      "path" : "comercio/{comercio}/{ubicacion}",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.updateComercio",
+      "request" : {
+        "parameters" : {
+          "comercio" : {
+            "type" : "string",
+            "required" : true
+          },
+          "ubicacion" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "shopping.deletecomercio" : {
+      "path" : "comercio/{comercio}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.deleteComercio",
+      "request" : {
+        "parameters" : {
+          "comercio" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "shopping.deleteubicacion" : {
+      "path" : "ubicacion",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.deleteUbicacion",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "shopping.insertproducto" : {
+      "path" : "void/{comercio}/{paquete}",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.insertProducto",
+      "request" : {
+        "parameters" : {
+          "comercio" : {
+            "type" : "string",
+            "required" : true
+          },
+          "paquete" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "shopping.insertcomercio" : {
+      "path" : "comercio/{comercio}/{ubicacion}",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.insertComercio",
+      "request" : {
+        "parameters" : {
+          "comercio" : {
+            "type" : "string",
+            "required" : true
+          },
+          "ubicacion" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "shopping.updateubicacion" : {
+      "path" : "ubicacion",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.updateUbicacion",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "shopping.deleteproducto" : {
+      "path" : "producto/{comercio}/{paquete}/{producto}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.deleteProducto",
+      "request" : {
+        "parameters" : {
+          "comercio" : {
+            "type" : "string",
+            "required" : true
+          },
+          "paquete" : {
+            "type" : "string",
+            "required" : true
+          },
+          "producto" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Ubicacion" : {
+        "id" : "Ubicacion",
+        "type" : "object",
+        "properties" : {
+          "nombre" : {
+            "type" : "string"
+          },
+          "edificio" : {
+            "type" : "string"
+          },
+          "piso" : {
+            "type" : "integer"
+          },
+          "sector" : {
+            "type" : "string"
+          },
+          "area" : {
+            "type" : "string"
+          },
+          "lugar" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Comercio" : {
+        "id" : "Comercio",
+        "type" : "object",
+        "properties" : {
+          "nombre" : {
+            "type" : "string"
+          },
+          "ubicacion" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Producto" : {
+        "id" : "Producto",
+        "type" : "object",
+        "properties" : {
+          "nombre" : {
+            "type" : "string"
+          },
+          "precio" : {
+            "type" : "number",
+            "format" : "float"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.fortmin.proshopping.Shopping.insertUbicacion" : {
+        "request" : {
+          "$ref" : "Ubicacion"
+        },
+        "response" : {
+          "$ref" : "Ubicacion"
+        }
+      },
+      "com.fortmin.proshopping.Shopping.updateComercio" : {
+        "response" : {
+          "$ref" : "Comercio"
+        }
+      },
+      "com.fortmin.proshopping.Shopping.deleteComercio" : {
+        "response" : {
+          "$ref" : "Comercio"
+        }
+      },
+      "com.fortmin.proshopping.Shopping.deleteUbicacion" : {
+        "request" : {
+          "$ref" : "Ubicacion"
+        }
+      },
+      "com.fortmin.proshopping.Shopping.insertProducto" : {
+        "request" : {
+          "$ref" : "Producto"
+        }
+      },
+      "com.fortmin.proshopping.Shopping.insertComercio" : {
+        "response" : {
+          "$ref" : "Comercio"
+        }
+      },
+      "com.fortmin.proshopping.Shopping.updateUbicacion" : {
+        "request" : {
+          "$ref" : "Ubicacion"
+        },
+        "response" : {
+          "$ref" : "Ubicacion"
+        }
+      },
+      "com.fortmin.proshopping.Shopping.deleteProducto" : {
+      }
+    }
+  }
+}
