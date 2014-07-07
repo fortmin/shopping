@@ -1,49 +1,42 @@
 package com.fortmin.proshopping;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
+import org.datanucleus.api.jpa.annotations.Index;
 
 @Entity
 public class Paquete {
 
 	@Id
-	private String clave;
-	private String comercio;
 	private String nombre;
 	private int cantProductos;
 	private int puntos;
 	private float precio;
-	@OneToMany
-	private LinkedList<Producto> productos;
+	@ElementCollection
+	private LinkedList<String> productos;
+	@Index(name="PaqElemRfIdx", unique="true")
+	private String elementoRF;
 	
-	public Paquete(String comercio, String nombre) {
-		this.clave = comercio+"/"+nombre;
-		this.comercio = comercio;
+	public Paquete(String nombre) {
 		this.nombre = nombre;
-		cantProductos = 0;
-		puntos = 0;
-		precio = 0;
-		productos = new LinkedList<Producto>();
+		this.cantProductos = 0;
+		this.puntos = 0;
+		this.precio = 0;
+		this.productos = new LinkedList<String>();
+		this.elementoRF = "";
 	}
 
-	public String getClave() {
-		return clave;
-	}
-
-	public void setClave(String clave) {
-		this.clave = clave;
-	}
-
-	public String getComercio() {
-		return comercio;
-	}
-
-	public void setComercio(String comercio) {
-		this.comercio = comercio;
+	public Paquete(String nombre, int puntos, float precio, String elementoRF) {
+		this.nombre = nombre;
+		this.cantProductos = 0;
+		this.puntos = puntos;
+		this.precio = precio;
+		this.productos = new LinkedList<String>();
+		this.elementoRF = elementoRF;
 	}
 
 	public String getNombre() {
@@ -78,34 +71,48 @@ public class Paquete {
 		this.precio = precio;
 	}
 
-	public LinkedList<Producto> getProductos() {
+	public LinkedList<String> getProductos() {
 		return productos;
 	}
 
-	public void setProductos(LinkedList<Producto> productos) {
+	public void setProductos(LinkedList<String> productos) {
 		this.productos = productos;
 	}
 	
-	public boolean tieneProducto(String nombre) {
+	public String getElementoRF() {
+		return elementoRF;
+	}
+
+	public void setElementoRF(String elementoRF) {
+		this.elementoRF = elementoRF;
+	}
+
+	public void actualizarPaquete(int puntos, float precio) {
+		this.puntos = puntos;
+		this.precio = precio;
+	}
+	
+	public boolean tieneProducto(String comercio, String codigo) {
 		boolean esta = false;
-		Iterator<Producto> iprods = productos.iterator();
-		while (iprods.hasNext() && !esta) {
-			if (iprods.next().getNombre().equals(nombre)) esta = true;
+		for (int i = 0; i < productos.size() && !esta; i++) {
+			if (productos.get(i).equals(comercio+"::"+codigo)) {
+				esta = true;
+			}
 		}
 		return esta;
 	}
 	
-	public void agregarProducto(Producto producto) {
-		if (!tieneProducto(producto.getNombre())) {
-			productos.add(producto);
+	public void agregarProducto(String comercio, String codigo) {
+		if (!tieneProducto(comercio, codigo)) {
+			productos.add(comercio+"::"+codigo);
 			this.setCantProductos(cantProductos+1);
 		}
 	}
 
-	public void eliminarProducto(String nombre) {
+	public void eliminarProducto(String comercio, String codigo) {
 		boolean salir = false;
 		for (int i = 0; i < productos.size() && !salir; i++) {
-			if (productos.get(i).getNombre().equals(nombre)) {
+			if (productos.get(i).equals(comercio+"::"+codigo)) {
 				productos.remove(i);
 				salir = true;
 			}

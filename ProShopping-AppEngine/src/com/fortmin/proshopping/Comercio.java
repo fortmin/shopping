@@ -12,7 +12,7 @@ public class Comercio {
 
 	public Comercio(String nombre, String ubicacion) {
 		this.nombre = nombre;
-		this.ubicacion = null;
+		this.ubicacion = ubicacion;
 	}
 
 	public String getNombre() {

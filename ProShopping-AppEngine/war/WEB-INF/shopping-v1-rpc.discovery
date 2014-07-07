@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"p_qcyFV0KQVqSB1Aq3pqmPu-2MY/uonimrvL2aac4zOZuXEo8NNCoyI\"",
+ "etag": "\"p_qcyFV0KQVqSB1Aq3pqmPu-2MY/vja6p1dkbVhKKCClCDXUgcEUxi4\"",
  "discoveryVersion": "v1",
  "id": "shopping:v1",
  "name": "shopping",
@@ -72,28 +72,33 @@
   }
  },
  "schemas": {
-  "Comercio": {
-   "id": "Comercio",
+  "Paquete": {
+   "id": "Paquete",
    "type": "object",
    "properties": {
-    "nombre": {
+    "cantProductos": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "elementoRF": {
      "type": "string"
     },
-    "ubicacion": {
-     "type": "string"
-    }
-   }
-  },
-  "Producto": {
-   "id": "Producto",
-   "type": "object",
-   "properties": {
     "nombre": {
      "type": "string"
     },
     "precio": {
      "type": "number",
      "format": "float"
+    },
+    "productos": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "puntos": {
+     "type": "integer",
+     "format": "int32"
     }
    }
   },
@@ -135,9 +140,21 @@
    "parameterOrder": [
     "comercio"
    ],
-   "returns": {
-    "$ref": "Comercio"
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.deletepaquete": {
+   "id": "shopping.deletepaquete",
+   "parameters": {
+    "paquete": {
+     "type": "string",
+     "required": true
+    }
    },
+   "parameterOrder": [
+    "paquete"
+   ],
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
@@ -145,6 +162,30 @@
   "shopping.deleteproducto": {
    "id": "shopping.deleteproducto",
    "parameters": {
+    "codProd": {
+     "type": "string",
+     "required": true
+    },
+    "comercio": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "codProd",
+    "comercio"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.deleteproductopaquete": {
+   "id": "shopping.deleteproductopaquete",
+   "parameters": {
+    "codProducto": {
+     "type": "string",
+     "required": true
+    },
     "comercio": {
      "type": "string",
      "required": true
@@ -152,16 +193,12 @@
     "paquete": {
      "type": "string",
      "required": true
-    },
-    "producto": {
-     "type": "string",
-     "required": true
     }
    },
    "parameterOrder": [
+    "codProducto",
     "comercio",
-    "paquete",
-    "producto"
+    "paquete"
    ],
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
@@ -170,13 +207,52 @@
   "shopping.deleteubicacion": {
    "id": "shopping.deleteubicacion",
    "parameters": {
-    "resource": {
-     "$ref": "Ubicacion"
+    "ubicacion": {
+     "type": "string",
+     "required": true
     }
    },
    "parameterOrder": [
-    "resource"
+    "ubicacion"
    ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.getpaquete": {
+   "id": "shopping.getpaquete",
+   "allowGet": true,
+   "parameters": {
+    "paquete": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "paquete"
+   ],
+   "returns": {
+    "$ref": "Paquete"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.getubicacion": {
+   "id": "shopping.getubicacion",
+   "allowGet": true,
+   "parameters": {
+    "ubicacion": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "ubicacion"
+   ],
+   "returns": {
+    "$ref": "Ubicacion"
+   },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
@@ -197,17 +273,14 @@
     "comercio",
     "ubicacion"
    ],
-   "returns": {
-    "$ref": "Comercio"
-   },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "shopping.insertproducto": {
-   "id": "shopping.insertproducto",
+  "shopping.insertpaquete": {
+   "id": "shopping.insertpaquete",
    "parameters": {
-    "comercio": {
+    "elementoRf": {
      "type": "string",
      "required": true
     },
@@ -215,14 +288,103 @@
      "type": "string",
      "required": true
     },
-    "resource": {
-     "$ref": "Producto"
+    "precio": {
+     "type": "number",
+     "required": true,
+     "format": "float"
+    },
+    "puntos": {
+     "type": "integer",
+     "required": true,
+     "format": "int32"
     }
    },
    "parameterOrder": [
-    "resource",
+    "elementoRf",
+    "paquete",
+    "precio",
+    "puntos"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.insertproducto": {
+   "id": "shopping.insertproducto",
+   "parameters": {
+    "codProd": {
+     "type": "string",
+     "required": true
+    },
+    "comercio": {
+     "type": "string",
+     "required": true
+    },
+    "nomProd": {
+     "type": "string",
+     "required": true
+    },
+    "precioProd": {
+     "type": "number",
+     "required": true,
+     "format": "float"
+    }
+   },
+   "parameterOrder": [
+    "codProd",
+    "comercio",
+    "nomProd",
+    "precioProd"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.insertproductopaquete": {
+   "id": "shopping.insertproductopaquete",
+   "parameters": {
+    "codProducto": {
+     "type": "string",
+     "required": true
+    },
+    "comercio": {
+     "type": "string",
+     "required": true
+    },
+    "paquete": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "codProducto",
     "comercio",
     "paquete"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.inserttag": {
+   "id": "shopping.inserttag",
+   "parameters": {
+    "tagid": {
+     "type": "string",
+     "required": true
+    },
+    "tipocontenido": {
+     "type": "string",
+     "required": true
+    },
+    "ubicacion": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "tagid",
+    "tipocontenido",
+    "ubicacion"
    ],
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
@@ -231,15 +393,76 @@
   "shopping.insertubicacion": {
    "id": "shopping.insertubicacion",
    "parameters": {
-    "resource": {
-     "$ref": "Ubicacion"
+    "area": {
+     "type": "string",
+     "required": true
+    },
+    "edificio": {
+     "type": "string",
+     "required": true
+    },
+    "lugar": {
+     "type": "string",
+     "required": true
+    },
+    "nombre": {
+     "type": "string",
+     "required": true
+    },
+    "piso": {
+     "type": "integer",
+     "required": true,
+     "format": "int32"
+    },
+    "sector": {
+     "type": "string",
+     "required": true
     }
    },
    "parameterOrder": [
-    "resource"
+    "area",
+    "edificio",
+    "lugar",
+    "nombre",
+    "piso",
+    "sector"
    ],
    "returns": {
     "$ref": "Ubicacion"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.listarpaquete": {
+   "id": "shopping.listarpaquete",
+   "allowGet": true,
+   "parameters": {
+    "paquete": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "paquete"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.obtenerpaqueteasociadorf": {
+   "id": "shopping.obtenerpaqueteasociadorf",
+   "parameters": {
+    "elementoRF": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "elementoRF"
+   ],
+   "returns": {
+    "$ref": "Paquete"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
@@ -261,9 +484,69 @@
     "comercio",
     "ubicacion"
    ],
-   "returns": {
-    "$ref": "Comercio"
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.updatepaquete": {
+   "id": "shopping.updatepaquete",
+   "parameters": {
+    "elementoRf": {
+     "type": "string",
+     "required": true
+    },
+    "paquete": {
+     "type": "string",
+     "required": true
+    },
+    "precio": {
+     "type": "number",
+     "required": true,
+     "format": "float"
+    },
+    "puntos": {
+     "type": "integer",
+     "required": true,
+     "format": "int32"
+    }
    },
+   "parameterOrder": [
+    "elementoRf",
+    "paquete",
+    "precio",
+    "puntos"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.updateproducto": {
+   "id": "shopping.updateproducto",
+   "parameters": {
+    "codProd": {
+     "type": "string",
+     "required": true
+    },
+    "comercio": {
+     "type": "string",
+     "required": true
+    },
+    "nomProd": {
+     "type": "string",
+     "required": true
+    },
+    "precioProd": {
+     "type": "number",
+     "required": true,
+     "format": "float"
+    }
+   },
+   "parameterOrder": [
+    "codProd",
+    "comercio",
+    "nomProd",
+    "precioProd"
+   ],
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
@@ -271,12 +554,39 @@
   "shopping.updateubicacion": {
    "id": "shopping.updateubicacion",
    "parameters": {
-    "resource": {
-     "$ref": "Ubicacion"
+    "area": {
+     "type": "string",
+     "required": true
+    },
+    "edificio": {
+     "type": "string",
+     "required": true
+    },
+    "lugar": {
+     "type": "string",
+     "required": true
+    },
+    "nombre": {
+     "type": "string",
+     "required": true
+    },
+    "piso": {
+     "type": "integer",
+     "required": true,
+     "format": "int32"
+    },
+    "sector": {
+     "type": "string",
+     "required": true
     }
    },
    "parameterOrder": [
-    "resource"
+    "area",
+    "edificio",
+    "lugar",
+    "nombre",
+    "piso",
+    "sector"
    ],
    "returns": {
     "$ref": "Ubicacion"

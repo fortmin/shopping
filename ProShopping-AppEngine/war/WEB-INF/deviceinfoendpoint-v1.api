@@ -84,27 +84,6 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "deviceinfoendpoint.getDeviceInfo" : {
-      "path" : "deviceinfo/{id}",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.fortmin.proshopping.DeviceInfoEndpoint.getDeviceInfo",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "string",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
     "deviceinfoendpoint.removeDeviceInfo" : {
       "path" : "deviceinfo/{id}",
       "httpMethod" : "DELETE",
@@ -124,6 +103,27 @@
       },
       "response" : {
         "body" : "empty"
+      }
+    },
+    "deviceinfoendpoint.getDeviceInfo" : {
+      "path" : "deviceinfo/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.DeviceInfoEndpoint.getDeviceInfo",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
       }
     }
   },
@@ -183,12 +183,12 @@
           "$ref" : "CollectionResponse_DeviceInfo"
         }
       },
+      "com.fortmin.proshopping.DeviceInfoEndpoint.removeDeviceInfo" : {
+      },
       "com.fortmin.proshopping.DeviceInfoEndpoint.getDeviceInfo" : {
         "response" : {
           "$ref" : "DeviceInfo"
         }
-      },
-      "com.fortmin.proshopping.DeviceInfoEndpoint.removeDeviceInfo" : {
       }
     }
   }

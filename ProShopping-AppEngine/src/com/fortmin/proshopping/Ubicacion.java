@@ -3,7 +3,6 @@ package com.fortmin.proshopping;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-
 @Entity
 public class Ubicacion {
 
@@ -14,6 +13,16 @@ public class Ubicacion {
 	private String sector;
 	private String area;
 	private String lugar;
+	
+	public Ubicacion(String nombre, String edificio, int piso, String sector,
+			String area, String lugar) {
+		this.nombre = nombre;
+		this.edificio = edificio;
+		this.piso = piso;
+		this.sector = sector;
+		this.area = area;
+		this.lugar = lugar;
+	}
 
 	public String getNombre() {
 		return nombre;
