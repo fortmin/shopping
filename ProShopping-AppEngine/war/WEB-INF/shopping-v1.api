@@ -27,6 +27,27 @@
   "ownerName" : "fortmin.com",
   "packagePath" : "proshopping",
   "methods" : {
+    "shopping.getPaqueteRf" : {
+      "path" : "get_paquete_rf",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.getPaqueteRF",
+      "request" : {
+        "parameters" : {
+          "elementoRF" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "shopping.insertubicacion" : {
       "path" : "insert_ubicacion",
       "httpMethod" : "POST",
@@ -89,6 +110,47 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
+    "shopping.updatebeacon" : {
+      "path" : "update_beacon",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.updateBeacon",
+      "request" : {
+        "parameters" : {
+          "beaconid" : {
+            "type" : "string",
+            "required" : true
+          },
+          "ubicacion" : {
+            "type" : "string",
+            "required" : true
+          },
+          "uuid" : {
+            "type" : "string",
+            "required" : true
+          },
+          "major" : {
+            "type" : "int32",
+            "required" : true
+          },
+          "minor" : {
+            "type" : "int32",
+            "required" : true
+          },
+          "rssi" : {
+            "type" : "int32",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
     "shopping.insertproductopaquete" : {
       "path" : "insert_producto_paquete",
       "httpMethod" : "POST",
@@ -147,6 +209,27 @@
         "body" : "empty"
       }
     },
+    "shopping.deletetag" : {
+      "path" : "delete_tag",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.deleteTag",
+      "request" : {
+        "parameters" : {
+          "tagid" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
     "shopping.deleteproducto" : {
       "path" : "delete_producto",
       "httpMethod" : "DELETE",
@@ -162,6 +245,35 @@
             "required" : true
           },
           "codProd" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "shopping.updatetag" : {
+      "path" : "update_tag",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.updateTag",
+      "request" : {
+        "parameters" : {
+          "tagid" : {
+            "type" : "string",
+            "required" : true
+          },
+          "ubicacion" : {
+            "type" : "string",
+            "required" : true
+          },
+          "tipocontenido" : {
             "type" : "string",
             "required" : true
           }
@@ -238,6 +350,27 @@
         "body" : "empty"
       }
     },
+    "shopping.getProductosPaquete" : {
+      "path" : "get_productos_paquete",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.getProductosPaquete",
+      "request" : {
+        "parameters" : {
+          "paquete" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "shopping.deleteproductopaquete" : {
       "path" : "delete_producto_paquete",
       "httpMethod" : "DELETE",
@@ -257,6 +390,27 @@
             "required" : true
           },
           "codProducto" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "shopping.deletebeacon" : {
+      "path" : "delete_beacon",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.deleteBeacon",
+      "request" : {
+        "parameters" : {
+          "beaconid" : {
             "type" : "string",
             "required" : true
           }
@@ -345,27 +499,6 @@
       "request" : {
         "parameters" : {
           "paquete" : {
-            "type" : "string",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "shopping.obtenerpaqueteasociadorf" : {
-      "path" : "obtener_paquete_asociado_rf",
-      "httpMethod" : "POST",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.fortmin.proshopping.Shopping.obtenerPaqueteAsociadoRF",
-      "request" : {
-        "parameters" : {
-          "elementoRF" : {
             "type" : "string",
             "required" : true
           }
@@ -488,6 +621,47 @@
         "body" : "empty"
       }
     },
+    "shopping.insertbeacon" : {
+      "path" : "insert_beacon",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fortmin.proshopping.Shopping.insertBeacon",
+      "request" : {
+        "parameters" : {
+          "beaconid" : {
+            "type" : "string",
+            "required" : true
+          },
+          "ubicacion" : {
+            "type" : "string",
+            "required" : true
+          },
+          "uuid" : {
+            "type" : "string",
+            "required" : true
+          },
+          "major" : {
+            "type" : "int32",
+            "required" : true
+          },
+          "minor" : {
+            "type" : "int32",
+            "required" : true
+          },
+          "rssi" : {
+            "type" : "int32",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
     "shopping.updateubicacion" : {
       "path" : "update_ubicacion",
       "httpMethod" : "PUT",
@@ -553,30 +727,6 @@
   },
   "descriptor" : {
     "schemas" : {
-      "Ubicacion" : {
-        "id" : "Ubicacion",
-        "type" : "object",
-        "properties" : {
-          "nombre" : {
-            "type" : "string"
-          },
-          "edificio" : {
-            "type" : "string"
-          },
-          "piso" : {
-            "type" : "integer"
-          },
-          "sector" : {
-            "type" : "string"
-          },
-          "area" : {
-            "type" : "string"
-          },
-          "lugar" : {
-            "type" : "string"
-          }
-        }
-      },
       "Paquete" : {
         "id" : "Paquete",
         "type" : "object",
@@ -604,9 +754,75 @@
             "type" : "string"
           }
         }
+      },
+      "Ubicacion" : {
+        "id" : "Ubicacion",
+        "type" : "object",
+        "properties" : {
+          "nombre" : {
+            "type" : "string"
+          },
+          "edificio" : {
+            "type" : "string"
+          },
+          "piso" : {
+            "type" : "integer"
+          },
+          "sector" : {
+            "type" : "string"
+          },
+          "area" : {
+            "type" : "string"
+          },
+          "lugar" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Producto" : {
+        "id" : "Producto",
+        "type" : "object",
+        "properties" : {
+          "clave" : {
+            "type" : "string"
+          },
+          "comercio" : {
+            "type" : "string"
+          },
+          "codigo" : {
+            "type" : "string"
+          },
+          "nombre" : {
+            "type" : "string"
+          },
+          "precio" : {
+            "type" : "number",
+            "format" : "float"
+          },
+          "producto" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ProductoCollection" : {
+        "id" : "ProductoCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Producto"
+            }
+          }
+        }
       }
     },
     "methods" : {
+      "com.fortmin.proshopping.Shopping.getPaqueteRF" : {
+        "response" : {
+          "$ref" : "Paquete"
+        }
+      },
       "com.fortmin.proshopping.Shopping.insertUbicacion" : {
         "response" : {
           "$ref" : "Ubicacion"
@@ -617,17 +833,30 @@
           "$ref" : "Ubicacion"
         }
       },
+      "com.fortmin.proshopping.Shopping.updateBeacon" : {
+      },
       "com.fortmin.proshopping.Shopping.insertProductoPaquete" : {
       },
       "com.fortmin.proshopping.Shopping.insertTag" : {
       },
+      "com.fortmin.proshopping.Shopping.deleteTag" : {
+      },
       "com.fortmin.proshopping.Shopping.deleteProducto" : {
+      },
+      "com.fortmin.proshopping.Shopping.updateTag" : {
       },
       "com.fortmin.proshopping.Shopping.updateProducto" : {
       },
       "com.fortmin.proshopping.Shopping.updatePaquete" : {
       },
+      "com.fortmin.proshopping.Shopping.getProductosPaquete" : {
+        "response" : {
+          "$ref" : "ProductoCollection"
+        }
+      },
       "com.fortmin.proshopping.Shopping.deleteProductoPaquete" : {
+      },
+      "com.fortmin.proshopping.Shopping.deleteBeacon" : {
       },
       "com.fortmin.proshopping.Shopping.updateComercio" : {
       },
@@ -640,11 +869,6 @@
           "$ref" : "Paquete"
         }
       },
-      "com.fortmin.proshopping.Shopping.obtenerPaqueteAsociadoRF" : {
-        "response" : {
-          "$ref" : "Paquete"
-        }
-      },
       "com.fortmin.proshopping.Shopping.listarPaquete" : {
       },
       "com.fortmin.proshopping.Shopping.insertProducto" : {
@@ -652,6 +876,8 @@
       "com.fortmin.proshopping.Shopping.insertPaquete" : {
       },
       "com.fortmin.proshopping.Shopping.insertComercio" : {
+      },
+      "com.fortmin.proshopping.Shopping.insertBeacon" : {
       },
       "com.fortmin.proshopping.Shopping.updateUbicacion" : {
         "response" : {

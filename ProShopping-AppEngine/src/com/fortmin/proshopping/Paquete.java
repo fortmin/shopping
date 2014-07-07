@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 
 import org.datanucleus.api.jpa.annotations.Index;
@@ -16,7 +17,7 @@ public class Paquete {
 	private int cantProductos;
 	private int puntos;
 	private float precio;
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	private LinkedList<String> productos;
 	@Index(name="PaqElemRfIdx", unique="true")
 	private String elementoRF;

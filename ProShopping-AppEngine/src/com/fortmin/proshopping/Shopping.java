@@ -1,5 +1,8 @@
 package com.fortmin.proshopping;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -185,13 +188,10 @@ public class Shopping {
 	public Paquete getPaquete(@Named("paquete") String nompaq) {
 		Paquete resp = null;
 		EntityManager mgr = getEntityManager();
-		EntityTransaction trans = mgr.getTransaction();
-		trans.begin();
 		Paquete paquete = mgr.find(Paquete.class, nompaq);
 		if (paquete != null) {
 			resp = paquete;
 		}
-		trans.commit();
 		mgr.close();
 		return resp;
 	}
@@ -290,9 +290,9 @@ public class Shopping {
 		trans.commit();
 		mgr.close();
 	}
-	
+
 	/*
-	 * Insertar un producto en un paquete ya existente
+	 * Insertar un Tag NFC junto con sus datos
 	 */
 	@ApiMethod(name = "inserttag", path = "insert_tag")
 	public void insertTag(@Named("tagid") String id,
@@ -302,9 +302,105 @@ public class Shopping {
 		EntityTransaction trans = mgr.getTransaction();
 		trans.begin();
 		Tag tag = mgr.find(Tag.class, id);
-		if (tag != null) {
+		if (tag == null) {
 			tag = new Tag(id, ubicacion, tipo);
 			mgr.persist(tag);
+		}
+		trans.commit();
+		mgr.close();
+	}
+
+	/*
+	 * Actualizar los datos de un Tag NFC ya existente
+	 */
+	@ApiMethod(name = "updatetag", path = "update_tag")
+	public void updateTag(@Named("tagid") String id,
+			@Named("ubicacion") String ubicacion,
+			@Named("tipocontenido") String tipo) {
+		EntityManager mgr = getEntityManager();
+		EntityTransaction trans = mgr.getTransaction();
+		trans.begin();
+		Tag tag = mgr.find(Tag.class, id);
+		if (tag != null) {
+			tag.setUbicacion(ubicacion);
+			tag.setTipConten(tipo);
+			mgr.persist(tag);
+		}
+		trans.commit();
+		mgr.close();
+	}
+
+	/*
+	 * Elimina un Tag NFC existente
+	 */
+	@ApiMethod(name = "deletetag", path = "delete_tag")
+	public void deleteTag(@Named("tagid") String id) {
+		EntityManager mgr = getEntityManager();
+		EntityTransaction trans = mgr.getTransaction();
+		trans.begin();
+		Tag tag = mgr.find(Tag.class, id);
+		if (tag != null) {
+			mgr.remove(tag);
+		}
+		trans.commit();
+		mgr.close();
+	}
+
+	/*
+	 * Insertar un nuevo Beacon
+	 */
+	@ApiMethod(name = "insertbeacon", path = "insert_beacon")
+	public void insertBeacon(@Named("beaconid") String id,
+			@Named("ubicacion") String ubicacion, @Named("uuid") String uuid,
+			@Named("major") int major, @Named("minor") int minor,
+			@Named("rssi") int rssi) {
+		EntityManager mgr = getEntityManager();
+		EntityTransaction trans = mgr.getTransaction();
+		trans.begin();
+		Beacon beacon = mgr.find(Beacon.class, id);
+		if (beacon == null) {
+			beacon = new Beacon(id, ubicacion, uuid, major, minor, rssi);
+			mgr.persist(beacon);
+		}
+		trans.commit();
+		mgr.close();
+	}
+
+	/*
+	 * Actualizar los datos de un Beacon existente
+	 */
+	@ApiMethod(name = "updatebeacon", path = "update_beacon")
+	public void updateBeacon(@Named("beaconid") String id,
+			@Named("ubicacion") String ubicacion, @Named("uuid") String uuid,
+			@Named("major") int major, @Named("minor") int minor,
+			@Named("rssi") int rssi) {
+		EntityManager mgr = getEntityManager();
+		EntityTransaction trans = mgr.getTransaction();
+		trans.begin();
+		Beacon beacon = mgr.find(Beacon.class, id);
+		if (beacon != null) {
+			beacon.setUbicacion(ubicacion);
+			beacon.setUuid(uuid);
+			beacon.setMajor(major);
+			beacon.setMinor(minor);
+			beacon.setRssi(rssi);
+			mgr.persist(beacon);
+		}
+		trans.commit();
+		mgr.close();
+	}
+
+	/*
+	 * Elimina un Beacon existente
+	 */
+	@ApiMethod(name = "deletebeacon", path = "delete_beacon")
+	public void deleteBeacon(@Named("beaconid") String id) {
+		EntityManager mgr = getEntityManager();
+		EntityTransaction trans = mgr.getTransaction();
+		trans.begin();
+		Beacon beacon = mgr.find(Beacon.class, id);
+		if (beacon != null) {
+			mgr.remove(beacon);
 		}
 		trans.commit();
 		mgr.close();
@@ -335,24 +431,54 @@ public class Shopping {
 		trans.commit();
 		mgr.close();
 	}
-	
+
 	/*
-	 * 
+	 * Dada la identificacion de un elemento RF (Tag, Beacon, ...) se devuelve
+	 * el paquete promocional asociado al mismo
 	 */
-	@ApiMethod(name = "obtenerpaqueteasociadorf", path = "obtener_paquete_asociado_rf")
-	public Paquete obtenerPaqueteAsociadoRF(@Named("elementoRF") String elemRf) {
+	@ApiMethod(name = "GetPaqueteRf", path = "get_paquete_rf")
+	public Paquete getPaqueteRF(@Named("elementoRF") String elemRf) {
 		Paquete paqresp = null;
 		EntityManager mgr = getEntityManager();
 		EntityTransaction trans = mgr.getTransaction();
 		trans.begin();
-		Query querypaq = mgr.createQuery("SELECT p FROM Paquete p WHERE p.elementoRF = :elemrf", Paquete.class);
+		Query querypaq = mgr.createQuery(
+				"SELECT p FROM Paquete p WHERE p.elementoRF = :elemrf",
+				Paquete.class);
 		querypaq.setParameter("elemrf", elemRf);
-		paqresp = (Paquete) querypaq.getSingleResult();
+		Paquete paquete = (Paquete) querypaq.getSingleResult();
+		paqresp = paquete;
 		trans.commit();
 		mgr.close();
 		return paqresp;
 	}
 
+	/*
+	 * Obtener la lista de productos de un paquete existente
+	 */
+	@ApiMethod(name = "GetProductosPaquete", path = "get_productos_paquete")
+	public LinkedList<Producto> getProductosPaquete(
+			@Named("paquete") String nompaq) {
+		LinkedList<Producto> prodlist = new LinkedList<Producto>();
+		Paquete paquete = this.getPaquete(nompaq);
+		if (paquete != null) {
+			EntityManager mgr = getEntityManager();
+			LinkedList<String> prods = paquete.getProductos();
+			Iterator<String> iprods = prods.iterator();
+			while (iprods.hasNext()) {
+				String claveprod = iprods.next();
+				Producto prod = mgr.find(Producto.class, claveprod);
+				if (prod != null)
+					prodlist.add(prod);
+			}
+			mgr.close();
+		}
+		return prodlist;
+	}
+
+	/*
+	 * Obtener una referencia al EntityManager
+	 */
 	private static EntityManager getEntityManager() {
 		return EMF.get().createEntityManager();
 	}

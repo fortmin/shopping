@@ -30,8 +30,8 @@ public class Beacon extends ElementoRF {
 		this.minor = minor;
 	}
 
-	public Beacon(String id, String uuid, int major, int minor, int rssi) {
-		super(id);
+	public Beacon(String id, String ubicacion, String uuid, int major, int minor, int rssi) {
+		super(id, ubicacion);
 		this.uuid = uuid;
 		this.major = major;
 		this.minor = minor;

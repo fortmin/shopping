@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"p_qcyFV0KQVqSB1Aq3pqmPu-2MY/vja6p1dkbVhKKCClCDXUgcEUxi4\"",
+ "etag": "\"p_qcyFV0KQVqSB1Aq3pqmPu-2MY/Ih3zdWwb_7HtoGL18QZovFne_ho\"",
  "discoveryVersion": "v1",
  "id": "shopping:v1",
  "name": "shopping",
@@ -104,6 +104,43 @@
     }
    }
   },
+  "Producto": {
+   "id": "Producto",
+   "type": "object",
+   "properties": {
+    "clave": {
+     "type": "string"
+    },
+    "codigo": {
+     "type": "string"
+    },
+    "comercio": {
+     "type": "string"
+    },
+    "nombre": {
+     "type": "string"
+    },
+    "precio": {
+     "type": "number",
+     "format": "float"
+    },
+    "producto": {
+     "type": "string"
+    }
+   }
+  },
+  "ProductoCollection": {
+   "id": "ProductoCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Producto"
+     }
+    }
+   }
+  },
   "Ubicacion": {
    "id": "Ubicacion",
    "type": "object",
@@ -131,6 +168,24 @@
   }
  },
  "methods": {
+  "deletebeacon": {
+   "id": "shopping.deletebeacon",
+   "path": "delete_beacon",
+   "httpMethod": "DELETE",
+   "parameters": {
+    "beaconid": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    }
+   },
+   "parameterOrder": [
+    "beaconid"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
   "deletecomercio": {
    "id": "shopping.deletecomercio",
    "path": "delete_comercio",
@@ -221,6 +276,24 @@
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
+  "deletetag": {
+   "id": "shopping.deletetag",
+   "path": "delete_tag",
+   "httpMethod": "DELETE",
+   "parameters": {
+    "tagid": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    }
+   },
+   "parameterOrder": [
+    "tagid"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
   "deleteubicacion": {
    "id": "shopping.deleteubicacion",
    "path": "delete_ubicacion",
@@ -235,6 +308,48 @@
    "parameterOrder": [
     "ubicacion"
    ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getPaqueteRf": {
+   "id": "shopping.getPaqueteRf",
+   "path": "get_paquete_rf",
+   "httpMethod": "GET",
+   "parameters": {
+    "elementoRF": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    }
+   },
+   "parameterOrder": [
+    "elementoRF"
+   ],
+   "response": {
+    "$ref": "Paquete"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getProductosPaquete": {
+   "id": "shopping.getProductosPaquete",
+   "path": "get_productos_paquete",
+   "httpMethod": "GET",
+   "parameters": {
+    "paquete": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    }
+   },
+   "parameterOrder": [
+    "paquete"
+   ],
+   "response": {
+    "$ref": "ProductoCollection"
+   },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
@@ -277,6 +392,57 @@
    "response": {
     "$ref": "Ubicacion"
    },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "insertbeacon": {
+   "id": "shopping.insertbeacon",
+   "path": "insert_beacon",
+   "httpMethod": "POST",
+   "parameters": {
+    "beaconid": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    },
+    "major": {
+     "type": "integer",
+     "required": true,
+     "format": "int32",
+     "location": "query"
+    },
+    "minor": {
+     "type": "integer",
+     "required": true,
+     "format": "int32",
+     "location": "query"
+    },
+    "rssi": {
+     "type": "integer",
+     "required": true,
+     "format": "int32",
+     "location": "query"
+    },
+    "ubicacion": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    },
+    "uuid": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    }
+   },
+   "parameterOrder": [
+    "beaconid",
+    "major",
+    "minor",
+    "rssi",
+    "ubicacion",
+    "uuid"
+   ],
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
@@ -510,23 +676,53 @@
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "obtenerpaqueteasociadorf": {
-   "id": "shopping.obtenerpaqueteasociadorf",
-   "path": "obtener_paquete_asociado_rf",
-   "httpMethod": "POST",
+  "updatebeacon": {
+   "id": "shopping.updatebeacon",
+   "path": "update_beacon",
+   "httpMethod": "PUT",
    "parameters": {
-    "elementoRF": {
+    "beaconid": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    },
+    "major": {
+     "type": "integer",
+     "required": true,
+     "format": "int32",
+     "location": "query"
+    },
+    "minor": {
+     "type": "integer",
+     "required": true,
+     "format": "int32",
+     "location": "query"
+    },
+    "rssi": {
+     "type": "integer",
+     "required": true,
+     "format": "int32",
+     "location": "query"
+    },
+    "ubicacion": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    },
+    "uuid": {
      "type": "string",
      "required": true,
      "location": "query"
     }
    },
    "parameterOrder": [
-    "elementoRF"
+    "beaconid",
+    "major",
+    "minor",
+    "rssi",
+    "ubicacion",
+    "uuid"
    ],
-   "response": {
-    "$ref": "Paquete"
-   },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
@@ -625,6 +821,36 @@
     "comercio",
     "nomProd",
     "precioProd"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "updatetag": {
+   "id": "shopping.updatetag",
+   "path": "update_tag",
+   "httpMethod": "PUT",
+   "parameters": {
+    "tagid": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    },
+    "tipocontenido": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    },
+    "ubicacion": {
+     "type": "string",
+     "required": true,
+     "location": "query"
+    }
+   },
+   "parameterOrder": [
+    "tagid",
+    "tipocontenido",
+    "ubicacion"
    ],
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"

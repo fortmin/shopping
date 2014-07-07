@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"p_qcyFV0KQVqSB1Aq3pqmPu-2MY/vja6p1dkbVhKKCClCDXUgcEUxi4\"",
+ "etag": "\"p_qcyFV0KQVqSB1Aq3pqmPu-2MY/Ih3zdWwb_7HtoGL18QZovFne_ho\"",
  "discoveryVersion": "v1",
  "id": "shopping:v1",
  "name": "shopping",
@@ -102,6 +102,43 @@
     }
    }
   },
+  "Producto": {
+   "id": "Producto",
+   "type": "object",
+   "properties": {
+    "clave": {
+     "type": "string"
+    },
+    "codigo": {
+     "type": "string"
+    },
+    "comercio": {
+     "type": "string"
+    },
+    "nombre": {
+     "type": "string"
+    },
+    "precio": {
+     "type": "number",
+     "format": "float"
+    },
+    "producto": {
+     "type": "string"
+    }
+   }
+  },
+  "ProductoCollection": {
+   "id": "ProductoCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Producto"
+     }
+    }
+   }
+  },
   "Ubicacion": {
    "id": "Ubicacion",
    "type": "object",
@@ -129,6 +166,21 @@
   }
  },
  "methods": {
+  "shopping.deletebeacon": {
+   "id": "shopping.deletebeacon",
+   "parameters": {
+    "beaconid": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "beaconid"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
   "shopping.deletecomercio": {
    "id": "shopping.deletecomercio",
    "parameters": {
@@ -204,6 +256,21 @@
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
+  "shopping.deletetag": {
+   "id": "shopping.deletetag",
+   "parameters": {
+    "tagid": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "tagid"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
   "shopping.deleteubicacion": {
    "id": "shopping.deleteubicacion",
    "parameters": {
@@ -215,6 +282,44 @@
    "parameterOrder": [
     "ubicacion"
    ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.getPaqueteRf": {
+   "id": "shopping.getPaqueteRf",
+   "allowGet": true,
+   "parameters": {
+    "elementoRF": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "elementoRF"
+   ],
+   "returns": {
+    "$ref": "Paquete"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.getProductosPaquete": {
+   "id": "shopping.getProductosPaquete",
+   "allowGet": true,
+   "parameters": {
+    "paquete": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "paquete"
+   ],
+   "returns": {
+    "$ref": "ProductoCollection"
+   },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
@@ -253,6 +358,49 @@
    "returns": {
     "$ref": "Ubicacion"
    },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.insertbeacon": {
+   "id": "shopping.insertbeacon",
+   "parameters": {
+    "beaconid": {
+     "type": "string",
+     "required": true
+    },
+    "major": {
+     "type": "integer",
+     "required": true,
+     "format": "int32"
+    },
+    "minor": {
+     "type": "integer",
+     "required": true,
+     "format": "int32"
+    },
+    "rssi": {
+     "type": "integer",
+     "required": true,
+     "format": "int32"
+    },
+    "ubicacion": {
+     "type": "string",
+     "required": true
+    },
+    "uuid": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "beaconid",
+    "major",
+    "minor",
+    "rssi",
+    "ubicacion",
+    "uuid"
+   ],
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
@@ -450,20 +598,45 @@
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "shopping.obtenerpaqueteasociadorf": {
-   "id": "shopping.obtenerpaqueteasociadorf",
+  "shopping.updatebeacon": {
+   "id": "shopping.updatebeacon",
    "parameters": {
-    "elementoRF": {
+    "beaconid": {
+     "type": "string",
+     "required": true
+    },
+    "major": {
+     "type": "integer",
+     "required": true,
+     "format": "int32"
+    },
+    "minor": {
+     "type": "integer",
+     "required": true,
+     "format": "int32"
+    },
+    "rssi": {
+     "type": "integer",
+     "required": true,
+     "format": "int32"
+    },
+    "ubicacion": {
+     "type": "string",
+     "required": true
+    },
+    "uuid": {
      "type": "string",
      "required": true
     }
    },
    "parameterOrder": [
-    "elementoRF"
+    "beaconid",
+    "major",
+    "minor",
+    "rssi",
+    "ubicacion",
+    "uuid"
    ],
-   "returns": {
-    "$ref": "Paquete"
-   },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]
@@ -546,6 +719,31 @@
     "comercio",
     "nomProd",
     "precioProd"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "shopping.updatetag": {
+   "id": "shopping.updatetag",
+   "parameters": {
+    "tagid": {
+     "type": "string",
+     "required": true
+    },
+    "tipocontenido": {
+     "type": "string",
+     "required": true
+    },
+    "ubicacion": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "tagid",
+    "tipocontenido",
+    "ubicacion"
    ],
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
