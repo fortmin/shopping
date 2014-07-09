@@ -2,7 +2,7 @@ package com.fortmin.proshopping;
 
 import java.io.IOException;
 
-import com.fortmin.proshopping.gae.ComercioNube;
+import com.fortmin.proshopping.gae.ShoppingNube;
 import com.fortmin.proshopping.shopping.Shopping;
 import com.fortmin.proshopping.shopping.model.Ubicacion;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -40,65 +40,18 @@ public class MainActivity extends Activity {
 	
 	public void onResume() {
 		Toast.makeText(getApplicationContext(), "Insertando comercio en la nube", Toast.LENGTH_SHORT).show();
-		ComercioNube comNube = new ComercioNube("INSERT", "La Cancha", "HallEntrada1");
-		InsertarComercio epic = new InsertarComercio();
-		epic.execute();
+		
+		// Obtener el paquete asociado a un Elmento RF
+		ShoppingNube comNube = new ShoppingNube(ShoppingNube.OPE_GET_PAQUETE_RF);
+		comNube.setIdElementoRF("BEACON001");
+		comNube.execute();
+
+		// Obtener la lista de productos asociados a un Paquete
+		comNube = new ShoppingNube(ShoppingNube.OPE_GET_PRODUCTOS_PAQUETE);
+		comNube.setNomPaquete("MundialAbrigado");
+		comNube.execute();
+
+
 	}
 	
-	/*
-	public class InsertarUbicacion extends AsyncTask<Context, Integer, Long> {
-		protected Long doInBackground(Context... contexts) {
-			long ret = 1;
-			Ubicacionendpoint.Builder endpointBuilder = new Ubicacionendpoint.Builder(
-					AndroidHttp.newCompatibleTransport(), 
-					new JacksonFactory(),
-					new HttpRequestInitializer() {
-						public void initialize(HttpRequest httpRequest) {
-						}
-					});
-			Ubicacionendpoint endpoint = CloudEndpointUtils.updateBuilder(endpointBuilder).build();
-			try {
-				Ubicacion ubic = new Ubicacion();
-				ubic.setNombre("Hall principal");
-				ubic.setPiso(1);
-				ubic.setEdificio("Principal");
-				ubic.setArea("Hall");
-				ubic = endpoint.insertUbicacion(ubic).execute();
-				ret = 0;
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			return ret;
-		}*/
-
-		public class InsertarComercio extends AsyncTask<Context, Integer, Long> {
-			
-			protected Long doInBackground(Context... contexts) {
-				long ret = 1;
-				Shopping.Builder endpointBuilder = new Shopping.Builder(
-						AndroidHttp.newCompatibleTransport(), 
-						new JacksonFactory(),
-						new HttpRequestInitializer() {
-							public void initialize(HttpRequest httpRequest) {
-							}
-						});
-				Shopping endpoint = CloudEndpointUtils.updateBuilder(endpointBuilder).build();
-				try {
-					Ubicacion ubic = new Ubicacion();
-					ubic.setNombre("HallEntrada1");
-					ubic.setPiso(1);
-					ubic.setEdificio("Principal");
-					ubic.setArea("Hall");
-					ubic.setSector("HallEntrada");
-					ubic.setLugar("Atras del kiosco");
-					endpoint.insertubicacion(ubic).execute();
-					endpoint.insertcomercio("La Cancha", "HallPrincipal");
-					ret = 0;
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				return ret;
-			}
-	}
-
 }

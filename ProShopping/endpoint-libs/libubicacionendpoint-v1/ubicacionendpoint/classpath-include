@@ -1,4 +1,4 @@
-	<classpathentry kind="lib" path="libs/google-api-services-ubicacionendpoint-v1-rev20140707043419-1.16.0-rc.jar" sourcepath="libs-sources/google-api-services-ubicacionendpoint-v1-rev20140707043419-1.16.0-rc-sources.jar"/>
+	<classpathentry kind="lib" path="libs/google-api-services-ubicacionendpoint-v1-rev20140707213540-1.16.0-rc.jar" sourcepath="libs-sources/google-api-services-ubicacionendpoint-v1-rev20140707213540-1.16.0-rc-sources.jar"/>
 	<classpathentry kind="lib" path="libs/google-api-client-1.16.0-rc.jar" sourcepath="libs-sources/google-api-client-1.16.0-rc-sources.jar"/>
 	<classpathentry kind="lib" path="libs/google-api-client-android-1.16.0-rc.jar" sourcepath="libs-sources/google-api-client-android-1.16.0-rc-sources.jar"/>
 	<classpathentry kind="lib" path="libs/google-api-client-appengine-1.16.0-rc.jar" sourcepath="libs-sources/google-api-client-appengine-1.16.0-rc-sources.jar"/>
