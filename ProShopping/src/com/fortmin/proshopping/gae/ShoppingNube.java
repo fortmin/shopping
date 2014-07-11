@@ -75,6 +75,14 @@ public class ShoppingNube extends AsyncTask<Context, Integer, Long> {
 		return ret;
 	}
 
+	public List<Producto> getListaProductos() {
+		return listaProductos;
+	}
+
+	public void setListaProductos(List<Producto> listaProductos) {
+		this.listaProductos = listaProductos;
+	}
+
 	public GetPaqueteRf getResp() {
 		return resp;
 	}
