@@ -54,20 +54,15 @@ public class UbicacionNube extends AsyncTask<Context, Integer, Long> {
 			if (operacion.equals("INSERT")) {
 				if (ubicacion != null) {
 					Log.i(this.TAG, "insertUbicacion");
-					endpoint.insertubicacion(ubicacion.getNombre(),
-							ubicacion.getEdificio(), ubicacion.getPiso(),
-							ubicacion.getSector(), ubicacion.getArea(),
-							ubicacion.getLugar());
+					endpoint.insertubicacion(ubicacion.getNombre(),ubicacion.getEdificio(),ubicacion.getSector(), ubicacion.getArea(), ubicacion.getPiso(),ubicacion.getLugar());
 					ret = 0;
 				} else
 					Log.i(this.TAG, "insertUbicacion - Falta ubicacion");
 			} else if (operacion.equals("UPDATE")) {
 				if (ubicacion != null) {
 					Log.i(this.TAG, "updateUbicacion");
-					endpoint.updateubicacion(ubicacion.getNombre(),
-							ubicacion.getEdificio(), ubicacion.getPiso(),
-							ubicacion.getSector(), ubicacion.getArea(),
-							ubicacion.getLugar());
+					
+					endpoint.updateubicacion(ubicacion.getNombre(),	ubicacion.getEdificio(), ubicacion.getSector(), ubicacion.getArea(),ubicacion.getPiso(),ubicacion.getLugar());
 					ret = 0;
 				} else
 					Log.i(this.TAG, "updateUbicacion - Falta ubicacion");
@@ -80,7 +75,7 @@ public class UbicacionNube extends AsyncTask<Context, Integer, Long> {
 					Log.i(this.TAG, "deleteUbicacion - Falta ubicacion");
 			} else if (operacion.equals("GET")) {
 				Getubicacion gUbicacion = endpoint.getubicacion(ubicacion.getNombre());
-				gUbicacion.
+				
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

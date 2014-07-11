@@ -47,7 +47,7 @@ public class CloudEndpointUtils {
    * http://developer.android.com/tools/devices/emulator.html#networkaddresses
    * for more information.
    */
-  protected static final String LOCAL_APP_ENGINE_SERVER_URL_FOR_ANDROID = "http://10.0.2.2:8888";
+  protected static final String LOCAL_APP_ENGINE_SERVER_URL_FOR_ANDROID = "http://10.0.2.2:8888/";
 
   /**
    * Updates the Google client builder to connect the appropriate server based
@@ -60,8 +60,7 @@ public class CloudEndpointUtils {
   public static <B extends AbstractGoogleClient.Builder> B updateBuilder(
       B builder) {
     if (LOCAL_ANDROID_RUN) {
-      builder.setRootUrl(LOCAL_APP_ENGINE_SERVER_URL_FOR_ANDROID
-          + "/_ah/api/");
+      builder.setRootUrl( LOCAL_APP_ENGINE_SERVER_URL_FOR_ANDROID + "_ah/api/");
     }
 
     // only enable GZip when connecting to remote server
