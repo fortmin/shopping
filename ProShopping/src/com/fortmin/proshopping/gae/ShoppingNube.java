@@ -51,8 +51,8 @@ public class ShoppingNube extends AsyncTask<Context, Integer, Long> {
 				if (idElementoRF != null) {
 					Log.i(this.TAG,OPE_GET_PAQUETE_RF);
 				    resp = endpoint.getPaqueteRf(idElementoRF);
-					//paquete=resp.execute();
-					//Log.i(this.TAG,"Grabe el paquete");
+					paquete=resp.execute();
+					Log.i(this.TAG,"Grabe el paquete");
 					ret = 0;
 				}
 				else
